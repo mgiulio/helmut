@@ -7,10 +7,16 @@ const
   ,chalk = require('chalk')
 ;
 
-process.chdir(__dirname);
-
 let cfgFile = process.argv.length >= 3 ? process.argv[2] : 'photo-session';
-let cfg = require(`./sessions/${cfgFile}.json`);
+let cfgJSON = fs.readFileSync(`./${cfgFile}.json`, 'utf8');
+let cfg;
+try {
+  cfg = JSON.parse(cfgJSON);
+} catch(e) {
+  console.error(chalk.red('Unable to parse JSON'));
+  throw e;
+}
+
 shoot(cfg);
 
 async function shoot(cfg) {
@@ -18,7 +24,7 @@ async function shoot(cfg) {
     cfg.shootByViewport = false;
   
   let dirName = cfgFile + '@' + new Date().toISOString().replace(/:|\./g, '-');
-  let dirPath = `./shots/${dirName}`;
+  let dirPath = `./${dirName}`;
   fs.mkdirSync(dirPath);
   console.log(`Session: ${chalk.bold(cfgFile)}`);
   console.log(`Shoots directory: ${chalk.bold(dirPath)}`);
