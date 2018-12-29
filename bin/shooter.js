@@ -2,13 +2,13 @@
 
 const
   puppeteer = require('puppeteer')
-  ,sanitize = require("sanitize-filename")
   ,fs = require('fs')
+  ,sanitize = require("sanitize-filename")
   ,chalk = require('chalk')
 ;
 
-let cfgFile = process.argv.length >= 3 ? process.argv[2] : 'photo-session';
-let cfgJSON = fs.readFileSync(`./${cfgFile}.json`, 'utf8');
+let cfgName = process.argv.length >= 3 ? process.argv[2] : 'photo-session';
+let cfgJSON = fs.readFileSync(`./${cfgName}.json`, 'utf8');
 let cfg = JSON.parse(cfgJSON);
 
 shoot(cfg);
@@ -17,10 +17,10 @@ async function shoot(cfg) {
   if (!("shootByViewport" in cfg))
     cfg.shootByViewport = false;
   
-  let dirName = cfgFile + '@' + new Date().toISOString().replace(/:|\./g, '-');
+  let dirName = cfgName + '@' + new Date().toISOString().replace(/:|\./g, '-');
   let dirPath = `./${dirName}`;
   fs.mkdirSync(dirPath);
-  console.log(`Session: ${chalk.bold(cfgFile)}`);
+  console.log(`Session: ${chalk.bold(cfgName)}`);
   console.log(`Shoots directory: ${chalk.bold(dirPath)}`);
 
   const browser = await puppeteer.launch();
