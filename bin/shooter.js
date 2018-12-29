@@ -9,13 +9,7 @@ const
 
 let cfgFile = process.argv.length >= 3 ? process.argv[2] : 'photo-session';
 let cfgJSON = fs.readFileSync(`./${cfgFile}.json`, 'utf8');
-let cfg;
-try {
-  cfg = JSON.parse(cfgJSON);
-} catch(e) {
-  console.error(chalk.red('Unable to parse JSON'));
-  throw e;
-}
+let cfg = JSON.parse(cfgJSON);
 
 shoot(cfg);
 
