@@ -19,7 +19,6 @@ async function shoot(cfg) {
   let dirName = sanitize(cfgName + '@' + new Date().toISOString(), {replacement: '-'});
   let dirPath = `./${dirName}`;
   fs.mkdirSync(dirPath);
-  console.log(`Session: ${chalk.bold(cfgName)}`);
   console.log(`Shoots directory: ${chalk.bold(dirPath)}`);
 
   const browser = await puppeteer.launch();
