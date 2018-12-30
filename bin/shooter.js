@@ -39,7 +39,7 @@ async function shoot(cfg) {
     for (let vp of cfg.viewports) {
       await page.setViewport({ width: vp[0], height: vp[1] });
 
-      let filename = `${sanitize(pageTitle)}@${vp[0]}.jpg`;
+      let filename = `${sanitize(pageTitle, {replacement: '-'})}@${vp[0]}.jpg`;
       screenshotParams.path = `${dirPath}/${filename}`;
       console.log(`${filename}`);
   
