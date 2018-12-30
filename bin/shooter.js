@@ -17,7 +17,7 @@ async function shoot(cfg) {
   if (!("shootByViewport" in cfg))
     cfg.shootByViewport = false;
   
-  let dirName = cfgName + '@' + new Date().toISOString().replace(/:|\./g, '-');
+  let dirName = sanitize(cfgName + '@' + new Date().toISOString(), {replacement: '-'});
   let dirPath = `./${dirName}`;
   fs.mkdirSync(dirPath);
   console.log(`Session: ${chalk.bold(cfgName)}`);
