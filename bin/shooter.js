@@ -14,9 +14,6 @@ let cfg = JSON.parse(cfgJSON);
 shoot(cfg);
 
 async function shoot(cfg) {
-  if (!("shootByViewport" in cfg))
-    cfg.shootByViewport = false;
-  
   let dirName = sanitize(cfgName + '@' + new Date().toISOString(), {replacement: '-'});
   let dirPath = `./${dirName}`;
   fs.mkdirSync(dirPath);
@@ -28,50 +25,27 @@ async function shoot(cfg) {
   console.log(`User Agent: ${chalk.bold(await browser.userAgent())}`);
   
   const page = await browser.newPage();
-  let startTime;
   let screenshotParams = {fullPage: true};
 
-  if (cfg.shootByViewport) {
-    startTime = process.hrtime();
+  let startTime = process.hrtime();
+  for (let url of cfg.URLs) {
+    console.log(chalk.bold(url));
+    await page.goto(url);
 
+    let pageTitle = await page.title();
+      
     for (let vp of cfg.viewports) {
       await page.setViewport({ width: vp[0], height: vp[1] });
-      console.log(chalk.bold(`Shooting fullscreen@${vp[0]}x${vp[1]}`));
 
-      for (let url of cfg.URLs) {
-        await page.goto(url);
-
-        let pageTitle = await page.title();
-        let filename = `${sanitize(pageTitle)}@${vp[0]}.jpg`;
-        screenshotParams.path = `${dirPath}/${filename}`;
-        console.log(`${pageTitle} (${chalk.grey(url)}) --> ${filename}`);
-        
-        await page.screenshot(screenshotParams);
-      }
+      let filename = `${sanitize(pageTitle)}@${vp[0]}.jpg`;
+      screenshotParams.path = `${dirPath}/${filename}`;
+      console.log(`${filename}`);
+  
+      await page.screenshot(screenshotParams);
     }
-    printElapsedTime(process.hrtime(startTime));
   }
-  else {
-    startTime = process.hrtime();
-    
-    for (let url of cfg.URLs) {
-      console.log(chalk.bold(url));
-      await page.goto(url);
-
-      let pageTitle = await page.title();
-        
-      for (let vp of cfg.viewports) {
-        await page.setViewport({ width: vp[0], height: vp[1] });
-
-        let filename = `${sanitize(pageTitle)}@${vp[0]}.jpg`;
-        screenshotParams.path = `${dirPath}/${filename}`;
-        console.log(`${filename}`);
-    
-        await page.screenshot(screenshotParams);
-      }
-    }
-    printElapsedTime(process.hrtime(startTime));
-  }
+  
+  printElapsedTime(process.hrtime(startTime));
 
   await browser.close();
 }
