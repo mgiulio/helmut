@@ -10,6 +10,8 @@ const
 let cfgName = process.argv.length >= 3 ? process.argv[2] : 'photo-session';
 let cfgJSON = fs.readFileSync(`./${cfgName}.json`, 'utf8');
 let cfg = JSON.parse(cfgJSON);
+if (!('baseURL' in cfg))
+  cfg.baseURL = '';
 
 shoot(cfg);
 
@@ -28,7 +30,8 @@ async function shoot(cfg) {
   let screenshotParams = {fullPage: true};
 
   let startTime = process.hrtime();
-  for (let url of cfg.URLs) {
+  for (let relURL of cfg.pages) {
+    let url = cfg.baseURL + relURL;
     console.log(chalk.bold(url));
     await page.goto(url);
 
@@ -44,7 +47,7 @@ async function shoot(cfg) {
       await page.screenshot(screenshotParams);
     }
   }
-  
+
   printElapsedTime(process.hrtime(startTime));
 
   await browser.close();
