@@ -26,12 +26,13 @@ async function shoot(cfg) {
   console.log(`User Agent: ${chalk.bold(await browser.userAgent())}`);
   
   const page = await browser.newPage();
+  page.on('load', console.log.bind(console, 'page loaded'));
   let screenshotParams = {fullPage: true};
 
   let startTime = process.hrtime();
   for (let relURL of cfg.pages) {
     let url = cfg.baseURL + relURL;
-    console.log(chalk.bold(url));
+    console.log('loading ' + chalk.bold(url) + '...');
     await page.goto(url);
 
     let pageTitle = await page.title();
