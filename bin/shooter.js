@@ -3,6 +3,7 @@
 const
   puppeteer = require('puppeteer')
   ,fs = require('fs')
+  ,path = require('path')
   ,sanitize = require("sanitize-filename")
   ,chalk = require('chalk')
 ;
@@ -40,7 +41,7 @@ async function shoot(cfg) {
       await page.setViewport({ width: vp[0], height: vp[1] });
 
       let filename = `${sanitize(pageTitle, {replacement: '-'})}@${vp[0]}.jpg`;
-      screenshotParams.path = `${shootsDir}/${filename}`;
+      screenshotParams.path = path.join(shootsDir, filename);
       console.log(`${filename}`);
   
       await page.screenshot(screenshotParams);
