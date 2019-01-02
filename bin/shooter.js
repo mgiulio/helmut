@@ -8,7 +8,7 @@ const
 ;
 
 let cfgName = process.argv.length >= 3 ? process.argv[2] : 'photo-session';
-let cfgJSON = fs.readFileSync(`./${cfgName}.json`, 'utf8');
+let cfgJSON = fs.readFileSync(`${cfgName}.json`, 'utf8');
 let cfg = JSON.parse(cfgJSON);
 if (!('baseURL' in cfg))
   cfg.baseURL = '';
