@@ -16,10 +16,9 @@ if (!('baseURL' in cfg))
 shoot(cfg);
 
 async function shoot(cfg) {
-  let dirName = sanitize(cfgName + '@' + new Date().toISOString(), {replacement: '-'});
-  let dirPath = `./${dirName}`;
-  fs.mkdirSync(dirPath);
-  console.log(`Shoots directory: ${chalk.bold(dirPath)}`);
+  let shootsDir = sanitize(cfgName + '@' + new Date().toISOString(), {replacement: '-'});
+  fs.mkdirSync(shootsDir);
+  console.log(`Shoots directory: ${chalk.bold(shootsDir)}`);
 
   const browser = await puppeteer.launch();
   console.log(`Browser version: ${chalk.bold(await browser.version())}`);
@@ -41,7 +40,7 @@ async function shoot(cfg) {
       await page.setViewport({ width: vp[0], height: vp[1] });
 
       let filename = `${sanitize(pageTitle, {replacement: '-'})}@${vp[0]}.jpg`;
-      screenshotParams.path = `${dirPath}/${filename}`;
+      screenshotParams.path = `${shootsDir}/${filename}`;
       console.log(`${filename}`);
   
       await page.screenshot(screenshotParams);
