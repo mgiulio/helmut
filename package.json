@@ -1,5 +1,5 @@
 {
-  "name": "shooter",
+  "name": "helmut",
   "version": "1.0.0",
   "description": "a simple screen shooter with the Puppeteer API",
   "main": ".lib/index.js",
@@ -12,7 +12,7 @@
     "sanitize-filename": "^1.6.1"
   },
   "bin": {
-    "shooter": "./bin/shooter.js"
+    "helmut": "./bin/helmut.js"
   },
   "preferGlobal": true,
   "scripts": {
