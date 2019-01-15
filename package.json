@@ -1,7 +1,7 @@
 {
   "name": "helmut",
   "version": "1.0.0",
-  "description": "a simple screen shooter with the Puppeteer API",
+  "description": "Automated fullpage screenshots of a site at multiple viewport sizes with Puppeteer and Node.js",
   "main": ".lib/index.js",
   "directories": {
     "lib": "lib"
