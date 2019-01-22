@@ -2,6 +2,10 @@
   "name": "helmut",
   "version": "1.0.0",
   "description": "Automated fullpage screenshots of a site at multiple viewport sizes with Puppeteer and Node.js",
+  "keywords": ["screenshot, "tool", "automation", "puppeteer", "testing", "responsive web design"]
+  "engines" : { "node" : ">=7.6.0" },
+  "license": "ISC",
+  "author": "Giulio Mainardi",
   "main": ".lib/index.js",
   "directories": {
     "lib": "lib"
@@ -17,6 +21,5 @@
   "preferGlobal": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "license": "ISC"
+  }
 }
