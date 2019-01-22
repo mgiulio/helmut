@@ -4,7 +4,7 @@
   "description": "Automated fullpage screenshots of a site at multiple viewport sizes with Puppeteer and Node.js",
   "keywords": ["screenshot, "tool", "automation", "puppeteer", "testing", "responsive web design"]
   "engines" : { "node" : ">=7.6.0" },
-  "license": "ISC",
+  "license": "MIT",
   "author": "Giulio Mainardi",
   "main": ".lib/index.js",
   "directories": {
