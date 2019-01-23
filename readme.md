@@ -47,10 +47,10 @@ We create a JSON file called `photo-session.json` in the location where we want 
 
 After having specified the base URL of the site, we list the relative URLs of the pages to shoot, and finally the viewport sizes at which these shots have to be taken.
 
-Having configured the shooting session, the script can be launched from the command line as usual:
+Having configured the shooting session, the script can be launched from the command line:
 
 ```shell
-node helmut
+helmut
 ```
 
 The script outputs some information to the console and starts saving the screenshots into a  timestamped folder named after the session name, something like `photo-session@2018-12-01T12-29-44-358Z`.
@@ -82,7 +82,7 @@ There's only one page here, so the baseURL property was omitted.
 To launch the script with this configuration,  just pass it the session name on the command line:
 
 ```shell
-node helmut home
+helmut home
 ```
 
 This time the shots are stored in `home@some-timestamp-here`. If no session name is passed to the script, a default `photo-session` name is used, as in the first example.
