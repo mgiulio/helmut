@@ -1,6 +1,6 @@
 # Helmut
 
-Helmut is a Node.js script which uses the [Puppeteer API](https://developers.google.com/web/tools/puppeteer/) to take automated fullpage screenshots of a site at multiple viewport sizes.
+Helmut is a Node.js script that uses the [Puppeteer API](https://developers.google.com/web/tools/puppeteer/) to take automated full page screenshots of a site at multiple viewport sizes.
 
 ## Installation
 
@@ -14,11 +14,11 @@ Node.js *v7.6.0 or greater* is required.
 
 ## Usage
 
-The script revolves around the idea of a *photo session* JavaScript object which describes what to shoot and in which way. 
+The script revolves around the idea of a *photo session* JavaScript object that describes what to shoot and in which way. 
 
 Let's say we are developing a portfolio site, and that we want to 'portrait' a bunch of its pages to inspect how they look when displayed on a variety of browser viewport sizes. 
 
-We create a JSON file called `photo-session.json` in the location where we want the screenshots to be saved in. This file has a format like this: 
+We create a JSON file called `photo-session.json` in the location where the screenshots must be saved. This file has a format like this: 
 
 ```javascript
 {
@@ -45,7 +45,7 @@ We create a JSON file called `photo-session.json` in the location where we want 
 }
 ```
 
-After having specified the base URL of the site, we list the relative URLs of the pages to shoot, and finally the viewport sizes at which these shots have to be taken.
+After the base URL of the site, there is the list of the relative URLs of the pages to shoot, and finally the viewport sizes at which these shots have to be taken.
 
 Having configured the shooting session, the script can be launched from the command line:
 
