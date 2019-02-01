@@ -1,6 +1,6 @@
 {
   "name": "helmut",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automated full page screenshots of a site at multiple viewport sizes with Puppeteer and Node.js",
   "keywords": [
     "screenshot",
@@ -30,5 +30,9 @@
   "preferGlobal": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  },
+  "homepage": "https://github.com/mgiulio/helmut",
+  "repository": "github:mgiulio/helmut",
+  "bugs": "https://github.com/mgiulio/helmut/issues"
+  
 }
